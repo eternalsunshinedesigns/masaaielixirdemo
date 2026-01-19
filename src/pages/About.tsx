@@ -133,9 +133,9 @@ const About = () => {
               Our Promise
             </h2>
             <p className="text-xl leading-relaxed text-primary-foreground/90 mb-8">
-              "To create skincare that celebrates African heritage, respects the earth, 
+              To create skincare that celebrates African heritage, respects the earth, 
               and reveals your most radiant self. Every product is a bridge between 
-              ancient wisdom and modern beauty."
+              ancient wisdom and modern beauty.
             </p>
             <Button 
               asChild 
