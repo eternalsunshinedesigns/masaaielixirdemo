@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Leaf, Heart, Sparkles, Shield } from "lucide-react";
 import { products } from "@/data/products";
+import maasaiHero from "@/assets/maasai-hero.jpg";
 
 const Home = () => {
   const featuredProducts = products.slice(0, 3);
@@ -11,29 +12,27 @@ const Home = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-sand/30 to-secondary/10" />
         <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B6914' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${maasaiHero})` }}
         />
-        <div className="relative container mx-auto px-6 lg:px-12 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-medium text-primary mb-6 animate-fade-in-up">
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/70 via-charcoal/50 to-transparent" />
+        <div className="relative container mx-auto px-6 lg:px-12">
+          <div className="max-w-3xl">
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-medium text-cream mb-6 animate-fade-in-up">
               Ancient African Wisdom.
               <br />
-              <span className="text-secondary">Modern Skincare Science.</span>
+              <span className="text-sand">Modern Skincare Science.</span>
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto mb-10 animate-fade-in-delay leading-relaxed">
+            <p className="text-lg md:text-xl text-cream/90 max-w-2xl mb-10 animate-fade-in-delay leading-relaxed">
               Discover the transformative power of indigenous African botanicals, 
               honoring the timeless beauty rituals of the Maasai people.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delay-2">
+            <div className="flex flex-col sm:flex-row items-start gap-4 animate-fade-in-delay-2">
               <Button asChild size="lg" className="px-8 py-6 text-base font-medium">
                 <Link to="/products">Shop the Collection</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="px-8 py-6 text-base font-medium border-primary/30 hover:bg-primary/5">
+              <Button asChild variant="outline" size="lg" className="px-8 py-6 text-base font-medium border-cream/40 text-cream hover:bg-cream/10">
                 <Link to="/about">Discover Our Story</Link>
               </Button>
             </div>
