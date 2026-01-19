@@ -32,7 +32,7 @@ const Home = () => {
               <Button asChild size="lg" className="px-8 py-6 text-base font-medium">
                 <Link to="/products">Shop the Collection</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="px-8 py-6 text-base font-medium border-cream/40 text-cream hover:bg-cream/10">
+              <Button asChild variant="outline" size="lg" className="px-8 py-6 text-base font-medium bg-cream/20 border-cream text-cream hover:bg-cream hover:text-charcoal backdrop-blur-sm">
                 <Link to="/about">Discover Our Story</Link>
               </Button>
             </div>
