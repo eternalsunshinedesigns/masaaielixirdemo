@@ -16,7 +16,7 @@ const ingredients = [
   },
   {
     name: "Baobab Extract",
-    description: "From the 'Tree of Life,' packed with vitamins A, D, E, and F for cellular regeneration.",
+    description: "From the Tree of Life, packed with vitamins A, D, E, and F for cellular regeneration.",
     origin: "East Africa"
   },
   {

@@ -173,8 +173,8 @@ const Contact = () => {
               {/* Quote */}
               <div className="mt-12 p-8 bg-card rounded-sm">
                 <blockquote className="font-serif text-xl text-primary italic leading-relaxed">
-                  "Beauty is not just in appearance—it's in the rituals we practice, 
-                  the ingredients we choose, and the heritage we honor."
+                  Beauty is not just in appearance—it's in the rituals we practice, 
+                  the ingredients we choose, and the heritage we honor.
                 </blockquote>
                 <p className="mt-4 text-muted-foreground text-sm">
                   — Maasai Elixir Philosophy
