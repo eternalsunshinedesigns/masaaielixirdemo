@@ -100,12 +100,17 @@ export default {
           from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        slowZoom: {
+          from: { transform: "scale(1)" },
+          to: { transform: "scale(1.1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fadeIn 0.6s ease-out forwards",
         "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+        "slow-zoom": "slowZoom 20s ease-out forwards",
       },
     },
   },

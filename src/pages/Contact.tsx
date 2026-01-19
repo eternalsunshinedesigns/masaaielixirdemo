@@ -142,7 +142,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium text-primary mb-1">Based In</h3>
                     <p className="text-foreground/70">
-                      Nairobi, Kenya<br />
+                      Mombasa, Kenya<br />
                       Serving clients worldwide
                     </p>
                   </div>
