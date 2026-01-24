@@ -1,21 +1,26 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
+import aboutBanner from "@/assets/about-banner.jpg";
+import heritageImage from "@/assets/heritage-image.jpg";
 
 const About = () => {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-br from-card via-background to-sand/20">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-primary mb-6 animate-fade-in-up">
-              Our Story
-            </h1>
-            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed animate-fade-in-delay">
-              A tribute to the beauty, strength, and timeless wisdom of the Maasai people.
-            </p>
-          </div>
+      {/* Hero Banner */}
+      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${aboutBanner})` }}
+        />
+        <div className="absolute inset-0 bg-primary/40" />
+        <div className="relative container mx-auto px-6 lg:px-12 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-primary-foreground mb-6 animate-fade-in-up">
+            Our Story
+          </h1>
+          <p className="text-lg md:text-xl text-primary-foreground/90 leading-relaxed animate-fade-in-delay max-w-2xl mx-auto">
+            A tribute to the beauty, strength, and timeless wisdom of the Maasai people.
+          </p>
         </div>
       </section>
 
@@ -23,10 +28,12 @@ const About = () => {
       <section className="py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="aspect-[4/5] placeholder-image rounded-sm flex items-center justify-center">
-              <span className="text-muted-foreground/50 font-serif text-lg">
-                Heritage Image
-              </span>
+            <div className="aspect-[4/5] rounded-sm overflow-hidden">
+              <img 
+                src={heritageImage} 
+                alt="African botanical skincare heritage" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h2 className="font-serif text-3xl md:text-4xl font-medium text-primary mb-6">
@@ -36,7 +43,7 @@ const About = () => {
                 <p>
                   For centuries, the Maasai people of East Africa have practiced beauty rituals 
                   that honor their deep connection to the land. Using indigenous plants, mineral-rich 
-                  clays, and sacred herbs, they've maintained radiant, resilient skin despite the 
+                  clays, and sacred herbs, theyve maintained radiant, resilient skin despite the 
                   harsh African sun.
                 </p>
                 <p>
@@ -112,7 +119,7 @@ const About = () => {
                 <p>
                   A portion of every purchase goes back to support education and healthcare 
                   initiatives in the regions where our ingredients originate. When you choose 
-                  Maasai Elixir, you're investing in the wellbeing of these communities.
+                  Maasai Elixir, youre investing in the wellbeing of these communities.
                 </p>
                 <p>
                   Our commitment to sustainability extends to our packaging—we use recyclable 

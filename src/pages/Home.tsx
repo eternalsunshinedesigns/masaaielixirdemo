@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Leaf, Heart, Sparkles, Shield, Truck, Lock, Recycle, ArrowRight } from "lucide-react";
 import { categories, getProductsByCategory } from "@/data/products";
 import heroBotanicals from "@/assets/hero-botanicals.jpg";
+import heritageImage from "@/assets/heritage-image.jpg";
 
 const Home = () => {
   return (
@@ -214,11 +215,13 @@ const Home = () => {
               </div>
             </div>
             
-            {/* Values Image Placeholder */}
-            <div className="aspect-square placeholder-image rounded-sm flex items-center justify-center">
-              <span className="text-muted-foreground/40 font-serif text-lg">
-                Heritage Image
-              </span>
+            {/* Values Image */}
+            <div className="aspect-square rounded-sm overflow-hidden">
+              <img 
+                src={heritageImage} 
+                alt="African botanical skincare heritage" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>

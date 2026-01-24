@@ -2,37 +2,51 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Droplets, Shield, Sun } from "lucide-react";
+import ingredientsBanner from "@/assets/ingredients-banner.jpg";
+import creationProcess from "@/assets/creation-process.jpg";
+import ingredientMarula from "@/assets/ingredient-marula.jpg";
+import ingredientShea from "@/assets/ingredient-shea.jpg";
+import ingredientBaobab from "@/assets/ingredient-baobab.jpg";
+import ingredientKigelia from "@/assets/ingredient-kigelia.jpg";
+import ingredientClay from "@/assets/ingredient-clay.jpg";
+import ingredientRooibos from "@/assets/ingredient-rooibos.jpg";
 
 const ingredients = [
   {
     name: "Marula Oil",
     description: "A luxurious oil rich in antioxidants and omega fatty acids, traditionally used for deep skin nourishment.",
-    origin: "Southern Africa"
+    origin: "Southern Africa",
+    image: ingredientMarula
   },
   {
     name: "African Shea Butter",
     description: "A rich, creamy butter known for its intense moisturizing and healing properties.",
-    origin: "West Africa"
+    origin: "West Africa",
+    image: ingredientShea
   },
   {
     name: "Baobab Extract",
     description: "From the Tree of Life, packed with vitamins A, D, E, and F for cellular regeneration.",
-    origin: "East Africa"
+    origin: "East Africa",
+    image: ingredientBaobab
   },
   {
     name: "Kigelia Africana",
     description: "Sacred sausage tree fruit used for firming, tightening, and rejuvenating the skin.",
-    origin: "Sub-Saharan Africa"
+    origin: "Sub-Saharan Africa",
+    image: ingredientKigelia
   },
   {
     name: "African Clay",
     description: "Mineral-rich clay that detoxifies, purifies, and balances the skin naturally.",
-    origin: "Various Regions"
+    origin: "Various Regions",
+    image: ingredientClay
   },
   {
     name: "Rooibos Extract",
     description: "Antioxidant-rich red bush tea that soothes inflammation and protects against environmental stress.",
-    origin: "South Africa"
+    origin: "South Africa",
+    image: ingredientRooibos
   }
 ];
 
@@ -50,24 +64,27 @@ const pillars = [
   {
     icon: Sun,
     title: "Healing",
-    description: "Restorative botanicals that repair damage, soothe irritation, and support your skin's natural renewal process."
+    description: "Restorative botanicals that repair damage, soothe irritation, and support your skins natural renewal process."
   }
 ];
 
 const Ingredients = () => {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-br from-card via-background to-accent/10">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-primary mb-6 animate-fade-in-up">
-              Our Rituals
-            </h1>
-            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed animate-fade-in-delay">
-              The sacred ingredients and time-honored practices that define Maasai Elixir.
-            </p>
-          </div>
+      {/* Hero Banner */}
+      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${ingredientsBanner})` }}
+        />
+        <div className="absolute inset-0 bg-primary/40" />
+        <div className="relative container mx-auto px-6 lg:px-12 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-primary-foreground mb-6 animate-fade-in-up">
+            Our Rituals
+          </h1>
+          <p className="text-lg md:text-xl text-primary-foreground/90 leading-relaxed animate-fade-in-delay max-w-2xl mx-auto">
+            The sacred ingredients and time-honored practices that define Maasai Elixir.
+          </p>
         </div>
       </section>
 
@@ -121,10 +138,12 @@ const Ingredients = () => {
                 key={ingredient.name} 
                 className="bg-background p-8 rounded-sm hover-lift group"
               >
-                <div className="aspect-square mb-6 placeholder-image rounded-sm flex items-center justify-center">
-                  <span className="text-muted-foreground/50 font-serif text-center px-4">
-                    {ingredient.name}
-                  </span>
+                <div className="aspect-square mb-6 rounded-sm overflow-hidden">
+                  <img 
+                    src={ingredient.image} 
+                    alt={ingredient.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <h3 className="font-serif text-xl font-medium text-primary mb-2">
                   {ingredient.name}
@@ -171,10 +190,12 @@ const Ingredients = () => {
                 </Button>
               </div>
             </div>
-            <div className="aspect-[4/5] placeholder-image rounded-sm flex items-center justify-center">
-              <span className="text-muted-foreground/50 font-serif text-lg">
-                Creation Process
-              </span>
+            <div className="aspect-[4/5] rounded-sm overflow-hidden">
+              <img 
+                src={creationProcess} 
+                alt="Skincare creation process" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
