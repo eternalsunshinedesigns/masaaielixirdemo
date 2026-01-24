@@ -1,68 +1,137 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { products, Product } from "@/data/products";
-import { X } from "lucide-react";
+import { products, categories, Product, ProductCategory, getCategoryById } from "@/data/products";
+import { cn } from "@/lib/utils";
 
 const Products = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  
+  const activeCategory = searchParams.get("category") as ProductCategory | null;
+  
+  const filteredProducts = useMemo(() => {
+    if (!activeCategory) return products;
+    return products.filter(p => p.category === activeCategory);
+  }, [activeCategory]);
+
+  const handleCategoryChange = (categoryId: ProductCategory | null) => {
+    if (categoryId) {
+      setSearchParams({ category: categoryId });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-24 bg-gradient-to-br from-card via-background to-sand/20">
+      <section className="py-20 lg:py-28 bg-gradient-to-br from-card via-background to-card/50">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mx-auto text-center">
+            <p className="text-xs tracking-[0.4em] uppercase text-secondary mb-4 font-medium animate-fade-in">
+              Shop Our Collection
+            </p>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-primary mb-6 animate-fade-in-up">
-              Our Collection
+              {activeCategory ? getCategoryById(activeCategory)?.name : "All Products"}
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed animate-fade-in-delay">
-              Luxurious skincare crafted with indigenous African botanicals and modern science.
+            <p className="text-lg text-foreground/70 leading-relaxed animate-fade-in-delay max-w-xl mx-auto">
+              {activeCategory 
+                ? getCategoryById(activeCategory)?.description 
+                : "Luxurious skincare crafted with indigenous African botanicals and modern science."
+              }
             </p>
           </div>
         </div>
       </section>
 
-      {/* Product Grid */}
-      <section className="py-24">
+      {/* Category Filter Tabs */}
+      <section className="py-8 border-b border-border/50 bg-background sticky top-32 md:top-36 z-40">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
+          <div className="flex items-center justify-center gap-2 md:gap-4 flex-wrap">
+            <button
+              onClick={() => handleCategoryChange(null)}
+              className={cn(
+                "px-4 md:px-6 py-2 text-xs tracking-[0.15em] uppercase font-medium transition-all duration-300 rounded-sm",
+                !activeCategory 
+                  ? "bg-primary text-primary-foreground" 
+                  : "text-foreground/60 hover:text-primary hover:bg-card"
+              )}
+            >
+              All Products
+            </button>
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => handleCategoryChange(category.id)}
+                className={cn(
+                  "px-4 md:px-6 py-2 text-xs tracking-[0.15em] uppercase font-medium transition-all duration-300 rounded-sm",
+                  activeCategory === category.id 
+                    ? "bg-primary text-primary-foreground" 
+                    : "text-foreground/60 hover:text-primary hover:bg-card"
+                )}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Product Grid */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
+          {/* Results count */}
+          <p className="text-sm text-muted-foreground mb-8">
+            Showing {filteredProducts.length} {filteredProducts.length === 1 ? "product" : "products"}
+          </p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {filteredProducts.map((product, index) => (
               <div 
                 key={product.id}
-                className="group bg-card rounded-sm overflow-hidden hover-lift"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="group bg-card rounded-sm overflow-hidden hover-lift animate-fade-in"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <div className="aspect-square placeholder-image relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-muted-foreground/50 font-serif text-lg text-center px-4">
+                  <div className="absolute inset-0 flex items-center justify-center p-4">
+                    <span className="text-muted-foreground/40 font-serif text-sm text-center">
                       {product.name}
                     </span>
                   </div>
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
+                  
+                  {/* Quick View Button */}
+                  <button
+                    onClick={() => setSelectedProduct(product)}
+                    className="absolute inset-x-4 bottom-4 py-3 bg-background/95 text-primary text-xs tracking-[0.15em] uppercase font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-sm"
+                  >
+                    Quick View
+                  </button>
                 </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl font-medium text-primary mb-2">
+                <div className="p-5">
+                  <p className="text-xs text-secondary uppercase tracking-wider mb-2">
+                    {getCategoryById(product.category)?.name}
+                  </p>
+                  <h3 className="font-serif text-lg font-medium text-primary mb-1 group-hover:text-secondary transition-colors">
                     {product.name}
                   </h3>
-                  <p className="text-secondary font-medium text-sm mb-2">
+                  <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
                     {product.tagline}
                   </p>
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                    {product.description}
-                  </p>
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-xl font-medium text-primary">
+                    <span className="font-serif text-lg font-medium text-primary">
                       {product.price}
                     </span>
                     <Button 
                       onClick={() => setSelectedProduct(product)}
-                      variant="outline" 
+                      variant="ghost" 
                       size="sm" 
-                      className="border-primary/30"
+                      className="text-xs tracking-wider uppercase text-secondary hover:text-primary"
                     >
-                      View Details
+                      Details
                     </Button>
                   </div>
                 </div>
@@ -78,17 +147,20 @@ const Products = () => {
           {selectedProduct && (
             <>
               <DialogHeader>
+                <p className="text-xs text-secondary uppercase tracking-wider mb-2">
+                  {getCategoryById(selectedProduct.category)?.name}
+                </p>
                 <DialogTitle className="font-serif text-2xl md:text-3xl font-medium text-primary">
                   {selectedProduct.name}
                 </DialogTitle>
-                <DialogDescription className="text-secondary font-medium">
+                <DialogDescription className="text-foreground/60 font-medium">
                   {selectedProduct.tagline}
                 </DialogDescription>
               </DialogHeader>
               <div className="mt-4">
                 {/* Product Image Placeholder */}
                 <div className="aspect-video placeholder-image rounded-sm mb-6 flex items-center justify-center">
-                  <span className="text-muted-foreground/50 font-serif">
+                  <span className="text-muted-foreground/40 font-serif">
                     Product Image
                   </span>
                 </div>
@@ -135,8 +207,8 @@ const Products = () => {
                   <span className="font-serif text-2xl font-medium text-primary">
                     {selectedProduct.price}
                   </span>
-                  <Button size="lg" className="px-8">
-                    Contact to Order
+                  <Button asChild size="lg" className="px-8 text-sm tracking-[0.15em] uppercase">
+                    <Link to="/contact">Contact to Order</Link>
                   </Button>
                 </div>
               </div>
@@ -146,16 +218,19 @@ const Products = () => {
       </Dialog>
 
       {/* Bottom CTA */}
-      <section className="py-24 bg-card">
+      <section className="py-20 lg:py-24 bg-card">
         <div className="container mx-auto px-6 lg:px-12 text-center">
+          <p className="text-xs tracking-[0.4em] uppercase text-secondary mb-4 font-medium">
+            Personalized Care
+          </p>
           <h2 className="font-serif text-3xl md:text-4xl font-medium text-primary mb-4">
             Need Help Choosing?
           </h2>
-          <p className="text-foreground/70 max-w-xl mx-auto mb-8">
+          <p className="text-foreground/70 max-w-xl mx-auto mb-10">
             Our skincare specialists can help you find the perfect products for your unique skin needs.
           </p>
-          <Button asChild size="lg" className="px-8">
-            <a href="/contact">Get Personalized Recommendations</a>
+          <Button asChild size="lg" className="px-10 text-sm tracking-[0.2em] uppercase">
+            <Link to="/contact">Get Personalized Recommendations</Link>
           </Button>
         </div>
       </section>

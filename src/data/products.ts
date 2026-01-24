@@ -1,3 +1,11 @@
+export type ProductCategory = "facial-care" | "body-care" | "therapeutic";
+
+export interface Category {
+  id: ProductCategory;
+  name: string;
+  description: string;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -6,7 +14,26 @@ export interface Product {
   benefits: string[];
   ingredients: string[];
   price: string;
+  category: ProductCategory;
 }
+
+export const categories: Category[] = [
+  {
+    id: "facial-care",
+    name: "Facial Care",
+    description: "Luxurious treatments for radiant, healthy skin"
+  },
+  {
+    id: "body-care",
+    name: "Body Care",
+    description: "Nourishing rituals for your entire body"
+  },
+  {
+    id: "therapeutic",
+    name: "Therapeutic",
+    description: "Healing solutions for problem skin"
+  }
+];
 
 export const products: Product[] = [
   {
@@ -21,7 +48,8 @@ export const products: Product[] = [
       "Non-greasy, fast-absorbing formula"
     ],
     ingredients: ["Marula Oil", "Baobab Extract", "Rosehip Seed Oil", "Vitamin E"],
-    price: "$78"
+    price: "$78",
+    category: "facial-care"
   },
   {
     id: "clay-cleanser",
@@ -35,7 +63,8 @@ export const products: Product[] = [
       "Leaves skin refreshed and balanced"
     ],
     ingredients: ["African Clay", "Chamomile Extract", "Aloe Vera", "Green Tea"],
-    price: "$52"
+    price: "$52",
+    category: "facial-care"
   },
   {
     id: "warrior-balm",
@@ -49,7 +78,8 @@ export const products: Product[] = [
       "Ideal for sensitive skin"
     ],
     ingredients: ["Shea Butter", "Moringa Oil", "Calendula", "Beeswax"],
-    price: "$64"
+    price: "$64",
+    category: "therapeutic"
   },
   {
     id: "sun-dust-cream",
@@ -63,7 +93,8 @@ export const products: Product[] = [
       "Antioxidant-rich formula"
     ],
     ingredients: ["Mongongo Oil", "Rooibos Extract", "Vitamin C", "Kigelia Extract"],
-    price: "$68"
+    price: "$68",
+    category: "body-care"
   },
   {
     id: "sacred-herb-soap",
@@ -77,6 +108,15 @@ export const products: Product[] = [
       "Balances oily and combination skin"
     ],
     ingredients: ["Neem", "Tea Tree Oil", "Activated Charcoal", "African Black Soap Base"],
-    price: "$28"
+    price: "$28",
+    category: "therapeutic"
   }
 ];
+
+export const getProductsByCategory = (categoryId: ProductCategory): Product[] => {
+  return products.filter(product => product.category === categoryId);
+};
+
+export const getCategoryById = (categoryId: ProductCategory): Category | undefined => {
+  return categories.find(cat => cat.id === categoryId);
+};
