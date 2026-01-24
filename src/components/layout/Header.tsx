@@ -24,7 +24,7 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md">
       {/* Top announcement bar */}
       <div className="bg-primary text-primary-foreground text-center py-2 text-xs tracking-[0.2em] uppercase">
-        Free Shipping on Orders Over $100
+        Premium African Botanical Skincare
       </div>
       
       <div className="border-b border-border/50">

@@ -40,7 +40,7 @@ export const products: Product[] = [
     id: "glow-oil",
     name: "Maasai Elixir Glow Oil",
     tagline: "Deep nourishment & radiant glow",
-    description: "A luxurious blend of African marula oil and baobab extract that deeply nourishes and reveals your skin's natural radiance. Inspired by ancient Maasai beauty rituals.",
+    description: "A luxurious blend of African marula oil and baobab extract that deeply nourishes and reveals your skins natural radiance. Inspired by ancient Maasai beauty rituals.",
     benefits: [
       "Deeply hydrates and nourishes",
       "Promotes natural radiance",
@@ -48,14 +48,14 @@ export const products: Product[] = [
       "Non-greasy, fast-absorbing formula"
     ],
     ingredients: ["Marula Oil", "Baobab Extract", "Rosehip Seed Oil", "Vitamin E"],
-    price: "$78",
+    price: "KSH 10,000",
     category: "facial-care"
   },
   {
     id: "clay-cleanser",
     name: "Savanna Clay Cleanser",
     tagline: "Detoxifying herbal wash",
-    description: "A gentle yet effective cleanser infused with African clay and healing herbs. Draws out impurities while respecting your skin's natural balance.",
+    description: "A gentle yet effective cleanser infused with African clay and healing herbs. Draws out impurities while respecting your skins natural balance.",
     benefits: [
       "Deeply cleanses and detoxifies",
       "Removes impurities and excess oil",
@@ -63,7 +63,7 @@ export const products: Product[] = [
       "Leaves skin refreshed and balanced"
     ],
     ingredients: ["African Clay", "Chamomile Extract", "Aloe Vera", "Green Tea"],
-    price: "$52",
+    price: "KSH 6,700",
     category: "facial-care"
   },
   {
@@ -78,14 +78,14 @@ export const products: Product[] = [
       "Ideal for sensitive skin"
     ],
     ingredients: ["Shea Butter", "Moringa Oil", "Calendula", "Beeswax"],
-    price: "$64",
+    price: "KSH 8,200",
     category: "therapeutic"
   },
   {
     id: "sun-dust-cream",
     name: "Sun & Dust Defense Cream",
     tagline: "Protection against harsh weather",
-    description: "A rich protective cream inspired by the Maasai's resilience under the African sun. Shields skin from environmental stressors while deeply moisturizing.",
+    description: "A rich protective cream inspired by the Maasais resilience under the African sun. Shields skin from environmental stressors while deeply moisturizing.",
     benefits: [
       "Protects against environmental damage",
       "Provides deep, lasting moisture",
@@ -93,7 +93,7 @@ export const products: Product[] = [
       "Antioxidant-rich formula"
     ],
     ingredients: ["Mongongo Oil", "Rooibos Extract", "Vitamin C", "Kigelia Extract"],
-    price: "$68",
+    price: "KSH 8,700",
     category: "body-care"
   },
   {
@@ -108,7 +108,7 @@ export const products: Product[] = [
       "Balances oily and combination skin"
     ],
     ingredients: ["Neem", "Tea Tree Oil", "Activated Charcoal", "African Black Soap Base"],
-    price: "$28",
+    price: "KSH 3,600",
     category: "therapeutic"
   }
 ];
