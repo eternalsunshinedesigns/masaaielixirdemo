@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { categories } from "@/data/products";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const navItems = [
-  { label: "Shop", path: "/products" },
-  { label: "Our Rituals", path: "/ingredients" },
+const mainNavItems = [
   { label: "About", path: "/about" },
+  { label: "Our Ingredients", path: "/ingredients" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -17,7 +23,7 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md">
       {/* Top announcement bar */}
-      <div className="bg-primary text-primary-foreground text-center py-2 text-xs tracking-widest uppercase">
+      <div className="bg-primary text-primary-foreground text-center py-2 text-xs tracking-[0.2em] uppercase">
         Free Shipping on Orders Over $100
       </div>
       
@@ -36,7 +42,7 @@ export const Header = () => {
           </div>
 
           {/* Desktop Navigation - Below Logo */}
-          <nav className="hidden md:flex items-center justify-center space-x-12 pb-4">
+          <nav className="hidden md:flex items-center justify-center space-x-10 pb-4">
             <Link
               to="/"
               className={cn(
@@ -48,7 +54,35 @@ export const Header = () => {
             >
               Home
             </Link>
-            {navItems.map((item) => (
+            
+            {/* Shop Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className={cn(
+                "flex items-center gap-1 text-xs font-medium tracking-[0.2em] uppercase transition-all duration-300 hover:text-secondary pb-1 outline-none",
+                location.pathname.startsWith("/products")
+                  ? "text-secondary border-b border-secondary"
+                  : "text-foreground/70"
+              )}>
+                Shop
+                <ChevronDown className="w-3 h-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-48">
+                <DropdownMenuItem asChild>
+                  <Link to="/products" className="w-full cursor-pointer">
+                    <span className="text-xs tracking-[0.1em] uppercase">All Products</span>
+                  </Link>
+                </DropdownMenuItem>
+                {categories.map((category) => (
+                  <DropdownMenuItem key={category.id} asChild>
+                    <Link to={`/products?category=${category.id}`} className="w-full cursor-pointer">
+                      <span className="text-xs tracking-[0.1em] uppercase">{category.name}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {mainNavItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
@@ -92,7 +126,36 @@ export const Header = () => {
               >
                 Home
               </Link>
-              {navItems.map((item) => (
+              
+              {/* Mobile Shop Section */}
+              <div className="flex flex-col items-center space-y-2 py-2">
+                <Link
+                  to="/products"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-300",
+                    location.pathname === "/products"
+                      ? "text-secondary"
+                      : "text-foreground/70 hover:text-secondary"
+                  )}
+                >
+                  Shop All
+                </Link>
+                <div className="flex flex-wrap justify-center gap-3 mt-2">
+                  {categories.map((category) => (
+                    <Link
+                      key={category.id}
+                      to={`/products?category=${category.id}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-xs tracking-[0.1em] uppercase text-muted-foreground hover:text-secondary transition-colors px-2 py-1"
+                    >
+                      {category.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              
+              {mainNavItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
