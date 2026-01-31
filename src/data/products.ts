@@ -1,3 +1,9 @@
+import productGlowOil from "@/assets/product-glow-oil.jpg";
+import productClayCleanser from "@/assets/product-clay-cleanser.jpg";
+import productWarriorBalm from "@/assets/product-warrior-balm.jpg";
+import productSunDustCream from "@/assets/product-sun-dust-cream.jpg";
+import productSacredHerbSoap from "@/assets/product-sacred-herb-soap.jpg";
+
 export type ProductCategory = "facial-care" | "body-care" | "therapeutic";
 
 export interface Category {
@@ -15,6 +21,7 @@ export interface Product {
   ingredients: string[];
   price: string;
   category: ProductCategory;
+  image: string;
 }
 
 export const categories: Category[] = [
@@ -48,8 +55,9 @@ export const products: Product[] = [
       "Non-greasy, fast-absorbing formula"
     ],
     ingredients: ["Marula Oil", "Baobab Extract", "Rosehip Seed Oil", "Vitamin E"],
-    price: "KSH 10,000",
-    category: "facial-care"
+    price: "KSH 2,500",
+    category: "facial-care",
+    image: productGlowOil
   },
   {
     id: "clay-cleanser",
@@ -63,8 +71,9 @@ export const products: Product[] = [
       "Leaves skin refreshed and balanced"
     ],
     ingredients: ["African Clay", "Chamomile Extract", "Aloe Vera", "Green Tea"],
-    price: "KSH 6,700",
-    category: "facial-care"
+    price: "KSH 1,800",
+    category: "facial-care",
+    image: productClayCleanser
   },
   {
     id: "warrior-balm",
@@ -78,8 +87,9 @@ export const products: Product[] = [
       "Ideal for sensitive skin"
     ],
     ingredients: ["Shea Butter", "Moringa Oil", "Calendula", "Beeswax"],
-    price: "KSH 8,200",
-    category: "therapeutic"
+    price: "KSH 2,200",
+    category: "therapeutic",
+    image: productWarriorBalm
   },
   {
     id: "sun-dust-cream",
@@ -93,8 +103,9 @@ export const products: Product[] = [
       "Antioxidant-rich formula"
     ],
     ingredients: ["Mongongo Oil", "Rooibos Extract", "Vitamin C", "Kigelia Extract"],
-    price: "KSH 8,700",
-    category: "body-care"
+    price: "KSH 2,400",
+    category: "body-care",
+    image: productSunDustCream
   },
   {
     id: "sacred-herb-soap",
@@ -108,8 +119,9 @@ export const products: Product[] = [
       "Balances oily and combination skin"
     ],
     ingredients: ["Neem", "Tea Tree Oil", "Activated Charcoal", "African Black Soap Base"],
-    price: "KSH 3,600",
-    category: "therapeutic"
+    price: "KSH 950",
+    category: "therapeutic",
+    image: productSacredHerbSoap
   }
 ];
 
@@ -119,4 +131,8 @@ export const getProductsByCategory = (categoryId: ProductCategory): Product[] =>
 
 export const getCategoryById = (categoryId: ProductCategory): Category | undefined => {
   return categories.find(cat => cat.id === categoryId);
+};
+
+export const getProductById = (productId: string): Product | undefined => {
+  return products.find(product => product.id === productId);
 };

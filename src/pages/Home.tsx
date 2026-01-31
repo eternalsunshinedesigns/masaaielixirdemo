@@ -5,6 +5,15 @@ import { Leaf, Heart, Sparkles, Shield, Truck, Lock, Recycle, ArrowRight } from 
 import { categories, getProductsByCategory } from "@/data/products";
 import heroBotanicals from "@/assets/hero-botanicals.jpg";
 import heritageImage from "@/assets/heritage-image.jpg";
+import categoryFacial from "@/assets/category-facial.jpg";
+import categoryBody from "@/assets/category-body.jpg";
+import categoryTherapeutic from "@/assets/category-therapeutic.jpg";
+
+const categoryImages: Record<string, string> = {
+  "facial-care": categoryFacial,
+  "body-care": categoryBody,
+  "therapeutic": categoryTherapeutic,
+};
 
 const Home = () => {
   return (
@@ -115,44 +124,38 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {categories.map((category, index) => {
-              const categoryProducts = getProductsByCategory(category.id);
-              return (
-                <Link 
-                  key={category.id}
-                  to={`/products?category=${category.id}`}
-                  className="group relative overflow-hidden bg-background rounded-sm"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Category Image Placeholder */}
-                  <div className="aspect-[4/5] placeholder-image relative overflow-hidden">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                      <span className="text-muted-foreground/40 font-serif text-lg mb-2">
-                        {category.name}
-                      </span>
-                      <span className="text-muted-foreground/30 text-xs">
-                        {categoryProducts.length} Products
-                      </span>
-                    </div>
-                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />
-                  </div>
-                  
-                  {/* Category Info */}
-                  <div className="p-6 text-center">
-                    <h3 className="font-serif text-xl font-medium text-primary mb-2 group-hover:text-secondary transition-colors">
-                      {category.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {category.description}
-                    </p>
-                    <span className="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-secondary group-hover:gap-3 transition-all">
-                      Shop Now
-                      <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
+            {categories.map((category, index) => (
+              <Link 
+                key={category.id}
+                to={`/products?category=${category.id}`}
+                className="group relative overflow-hidden bg-background rounded-sm"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Category Image */}
+                <div className="aspect-[4/5] relative overflow-hidden">
+                  <img 
+                    src={categoryImages[category.id]} 
+                    alt={category.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />
+                </div>
+                
+                {/* Category Info */}
+                <div className="p-6 text-center">
+                  <h3 className="font-serif text-xl font-medium text-primary mb-2 group-hover:text-secondary transition-colors">
+                    {category.name}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    {category.description}
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-secondary group-hover:gap-3 transition-all">
+                    Shop Now
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -255,15 +258,15 @@ const Home = () => {
             {getProductsByCategory("facial-care").slice(0, 2).concat(getProductsByCategory("therapeutic").slice(0, 2)).map((product) => (
               <Link 
                 key={product.id}
-                to="/products"
+                to={`/product/${product.id}`}
                 className="group bg-background rounded-sm overflow-hidden hover-lift"
               >
-                <div className="aspect-square placeholder-image relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-muted-foreground/40 font-serif text-sm text-center px-4">
-                      {product.name}
-                    </span>
-                  </div>
+                <div className="aspect-square relative overflow-hidden">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                 </div>
                 <div className="p-5">
