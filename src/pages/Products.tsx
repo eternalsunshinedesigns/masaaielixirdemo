@@ -90,22 +90,26 @@ const Products = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filteredProducts.map((product, index) => (
-              <div 
+              <Link 
                 key={product.id}
+                to={`/product/${product.id}`}
                 className="group bg-card rounded-sm overflow-hidden hover-lift animate-fade-in"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <div className="aspect-square placeholder-image relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center p-4">
-                    <span className="text-muted-foreground/40 font-serif text-sm text-center">
-                      {product.name}
-                    </span>
-                  </div>
+                <div className="aspect-square relative overflow-hidden">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                   
                   {/* Quick View Button */}
                   <button
-                    onClick={() => setSelectedProduct(product)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSelectedProduct(product);
+                    }}
                     className="absolute inset-x-4 bottom-4 py-3 bg-background/95 text-primary text-xs tracking-[0.15em] uppercase font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-sm"
                   >
                     Quick View
@@ -125,17 +129,12 @@ const Products = () => {
                     <span className="font-serif text-lg font-medium text-primary">
                       {product.price}
                     </span>
-                    <Button 
-                      onClick={() => setSelectedProduct(product)}
-                      variant="ghost" 
-                      size="sm" 
-                      className="text-xs tracking-wider uppercase text-secondary hover:text-primary"
-                    >
-                      Details
-                    </Button>
+                    <span className="text-xs tracking-wider uppercase text-secondary">
+                      View Details
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -158,11 +157,13 @@ const Products = () => {
                 </DialogDescription>
               </DialogHeader>
               <div className="mt-4">
-                {/* Product Image Placeholder */}
-                <div className="aspect-video placeholder-image rounded-sm mb-6 flex items-center justify-center">
-                  <span className="text-muted-foreground/40 font-serif">
-                    Product Image
-                  </span>
+                {/* Product Image */}
+                <div className="aspect-video rounded-sm mb-6 overflow-hidden">
+                  <img 
+                    src={selectedProduct.image} 
+                    alt={selectedProduct.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Description */}

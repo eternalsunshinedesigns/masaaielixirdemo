@@ -3,6 +3,8 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import aboutBanner from "@/assets/about-banner.jpg";
 import heritageImage from "@/assets/heritage-image.jpg";
+import scienceImage from "@/assets/science-image.jpg";
+import sourcingImage from "@/assets/sourcing-image.jpg";
 
 const About = () => {
   return (
@@ -88,10 +90,12 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="order-1 lg:order-2 aspect-[4/5] placeholder-image rounded-sm flex items-center justify-center">
-              <span className="text-muted-foreground/50 font-serif text-lg">
-                Science Image
-              </span>
+            <div className="order-1 lg:order-2 aspect-[4/5] rounded-sm overflow-hidden">
+              <img 
+                src={scienceImage} 
+                alt="Skincare science and natural ingredients" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -101,10 +105,12 @@ const About = () => {
       <section className="py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="aspect-[4/5] placeholder-image rounded-sm flex items-center justify-center">
-              <span className="text-muted-foreground/50 font-serif text-lg">
-                Sourcing Image
-              </span>
+            <div className="aspect-[4/5] rounded-sm overflow-hidden">
+              <img 
+                src={sourcingImage} 
+                alt="Ethical ingredient sourcing in Africa" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h2 className="font-serif text-3xl md:text-4xl font-medium text-primary mb-6">
