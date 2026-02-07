@@ -178,17 +178,44 @@
     }
   }
 
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
   /* Smooth hover transitions */
   .hover-lift {
-    @apply transition-transform duration-300 ease-out;
+    @apply transition-all duration-500 ease-out;
   }
 
   .hover-lift:hover {
-    @apply -translate-y-1;
+    @apply -translate-y-2 shadow-lg;
   }
 
   /* Image placeholder styling */
   .placeholder-image {
     @apply bg-gradient-to-br from-sand to-muted;
+  }
+
+  /* Parallax-like subtle movement */
+  .parallax-subtle {
+    will-change: transform;
+  }
+
+  /* Decorative line */
+  .decorative-line {
+    @apply w-16 h-[1px] bg-secondary mx-auto;
+  }
+
+  /* Hide Lovable badge */
+  a[href*="lovable.dev"][style],
+  img[alt="Made with Lovable"],
+  [id*="lovable"],
+  a[aria-label*="Lovable"] {
+    display: none !important;
   }
 }

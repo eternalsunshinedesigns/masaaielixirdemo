@@ -22,9 +22,17 @@ export const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-md">
-      {/* Top announcement bar */}
-      <div className="bg-primary text-primary-foreground text-center py-2 text-xs tracking-[0.2em] uppercase">
-        Premium African Botanical Skincare
+      {/* Top decorative banner */}
+      <div className="bg-primary text-primary-foreground text-center py-2 flex items-center justify-center gap-3">
+        <span className="w-8 h-[1px] bg-primary-foreground/40" />
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-primary-foreground/70">
+          <path d="M12 2L14.5 9.5H22L16 14L18.5 22L12 17.5L5.5 22L8 14L2 9.5H9.5L12 2Z" fill="currentColor" />
+        </svg>
+        <span className="text-[10px] tracking-[0.35em] uppercase font-light">Maasai Elixir</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-primary-foreground/70">
+          <path d="M12 2L14.5 9.5H22L16 14L18.5 22L12 17.5L5.5 22L8 14L2 9.5H9.5L12 2Z" fill="currentColor" />
+        </svg>
+        <span className="w-8 h-[1px] bg-primary-foreground/40" />
       </div>
       
       <div className="border-b border-border/50">
