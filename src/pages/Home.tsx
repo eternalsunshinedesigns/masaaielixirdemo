@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Leaf, Heart, Sparkles, Shield, Truck, Lock, Recycle, ArrowRight } from "lucide-react";
 import { categories, getProductsByCategory } from "@/data/products";
-import heroBotanicals from "@/assets/hero-botanicals.jpg";
+import heroVideo from "@/assets/hero-video.mp4";
 import heritageImage from "@/assets/heritage-image.jpg";
 import categoryFacial from "@/assets/category-facial.jpg";
 import categoryBody from "@/assets/category-body.jpg";
@@ -22,13 +22,17 @@ const Home = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBotanicals})` }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 12, ease: "easeOut" }}
-        />
+        <div className="absolute inset-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-transparent" />
 
         <div className="relative container mx-auto px-6 lg:px-12">
