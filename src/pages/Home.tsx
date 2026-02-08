@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { FloatingBotanicals } from "@/components/ui/FloatingBotanicals";
 import { Leaf, Heart, Sparkles, Shield, Truck, Lock, Recycle, ArrowRight } from "lucide-react";
 import { categories, getProductsByCategory } from "@/data/products";
 import heroVideo from "@/assets/hero-video.mp4";
@@ -22,6 +23,7 @@ const Home = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        <FloatingBotanicals variant="hero" />
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -108,9 +110,10 @@ const Home = () => {
       </section>
 
       {/* Brand Mission Statement */}
-      <section className="py-24 lg:py-32 bg-background">
+      <section className="relative py-24 lg:py-32 bg-background overflow-hidden">
+        <FloatingBotanicals variant="minimal" />
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center relative">
             <ScrollReveal>
               <p className="text-xs tracking-[0.4em] uppercase text-secondary mb-4 font-medium">
                 Our Philosophy
@@ -195,7 +198,8 @@ const Home = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 lg:py-32 bg-background">
+      <section className="relative py-24 lg:py-32 bg-background overflow-hidden">
+        <FloatingBotanicals variant="section" />
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -313,7 +317,8 @@ const Home = () => {
       </section>
 
       {/* People & Planet CTA */}
-      <section className="py-24 lg:py-32 bg-primary text-primary-foreground overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-primary text-primary-foreground overflow-hidden">
+        <FloatingBotanicals variant="accent" />
         <div className="container mx-auto px-6 lg:px-12">
           <ScrollReveal className="max-w-3xl mx-auto text-center">
             <p className="text-xs tracking-[0.4em] uppercase text-primary-foreground/70 mb-4">
